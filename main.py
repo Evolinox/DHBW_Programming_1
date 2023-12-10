@@ -1,16 +1,8 @@
-import time
-import json
-import datetime
-import time
 import discord
 import discord.utils
 import os
-import sys
 
-from sys import argv
 from discord.ext import commands
-from discord.utils import get
-from datetime import datetime
 
 # Lies den Token aus der Textdatei
 with open('token.txt') as file:
@@ -37,7 +29,7 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-    if message.content.startswith('fahrstuhl'):
+    if "fahrstuhl" in message.content:
         await message.channel.send('Ich bin der Fahrstuhl Bot, ich sorge für wunderschöne Musik, während ihr im Fahrstuhl chilled :) (Ich gehöre Pascal, falls es Probleme gibt)')
 
     if message.content.startswith('Nett hier'):
