@@ -1,7 +1,4 @@
 import discord
-import random
-import json
-import os
 
 from discord.ext import commands
 
@@ -47,5 +44,5 @@ class Escalator(commands.Cog):
                     if len(channels.members) == 0:
                         await channels.delete()
 
-def setup(bot):
-    bot.add_cog(Escalator(bot))
+async def setup(bot):
+    await bot.add_cog(Escalator(bot))

@@ -24,12 +24,12 @@ bot.remove_command("help")
 
 @bot.event
 async def on_ready():
-    print(f'We have logged in as {bot.user}')
+    print(f'DEBUG: logged in as {bot.user}')
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="fahrstuhlmusik"))
 
     for filename in os.listdir(os.path.join(os.path.dirname(__file__), './escalator')):
         if filename.endswith('py'):
-            bot.load_extension(f'escalator.{filename[:-3]}')
+            await bot.load_extension(f'escalator.{filename[:-3]}')
             print(f'DEBUG: loaded extension: {filename[:-3]}')
 
 @bot.event
