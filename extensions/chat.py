@@ -16,7 +16,7 @@ class Chat(commands.Cog):
             return
         
         if "nett hier" in message.content:
-            await message.reply("Aber waren Sie schonmal in Baden-Württemberg?")
+            await message.reply("Aber waren Sie schon mal in Baden-Württemberg?")
 
 async def setup(bot):
     await bot.add_cog(Chat(bot))
