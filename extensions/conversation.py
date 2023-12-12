@@ -19,7 +19,6 @@ class Conversation(commands.Cog):
             return
         
         if message.author.bot:
-            print("DEBUG: self-talk with Alex's Bot :P")
             if message.content.startswith("Hey, "):
                 await message.reply(f"Oh hey, <@{message.author.id}> ! Wie geht es dir")
 
@@ -43,7 +42,6 @@ class Conversation(commands.Cog):
             if "Auf gehts! Versammle mit mir die Bots aller Server" in message.content:
                 await message.reply(f"https://tenor.com/view/annoyed-disappointed-mad-upset-gif-26051038")
         else:
-            print("DEBUG: no self talk with Alex's Bot :(")
             return
 
 async def setup(bot):
