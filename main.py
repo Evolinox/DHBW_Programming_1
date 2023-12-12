@@ -18,18 +18,12 @@ client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
 
 # Command Setup
-bot = commands.Bot(command_prefix="f!", intents=intents)
+bot = commands.Bot(command_prefix="ollama!", intents=intents, application_id="823237843685081088")
 bot.remove_command("help")
 
 @bot.event
 async def on_ready():
     print(f'DEBUG: logged in as {bot.user}')
-
-    # Commands (Funktioniert net, weil appid fehlt? Maybe bot durch client ändern, 
-    # dann machen Cogs aber probleme)
-    
-    # await tree.sync(guild=discord.Object(id=1179106176915480686))
-    print("DEBUG: synced Command Tree")
 
     # Setze die Aktivität vom Bot für das GUI
     await bot.change_presence(activity=discord.Game(name = "Mistral 7B"))
