@@ -26,7 +26,7 @@ async def on_ready():
     print(f'DEBUG: logged in as {bot.user}')
 
     # Setze die Aktivität vom Bot für das GUI
-    await bot.change_presence(activity=discord.Game(name = "Mistral 7B"))
+    await bot.change_presence(activity=discord.Game(name = "Llama 7B"))
 
     # Lade Cogs aus dem extensions Ordner
     for filename in os.listdir(os.path.join(os.path.dirname(__file__), './extensions')):
