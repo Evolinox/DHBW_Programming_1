@@ -19,13 +19,6 @@ class Ollama(commands.Cog):
     async def on_ready(self):
         print("DEBUG: Ollama cog loaded")
 
-    # Alle Slashbefehle mit Server synchronisieren
-    @commands.command()
-    async def sync(self, ctx) -> None:
-        slashcommandtree = await ctx.bot.tree.sync(guild=ctx.guild)
-        await ctx.send(f'Synced {len(slashcommandtree)} commands.')
-        print("DEBUG: synced Command Tree")
-
     # Slashbefehl um das LLM Modell zu ändern
     @app_commands.command(name = "set_llm_model", description = "Set the Model for Llama (Llama 2 | Codellama | Discollama)")
     async def set_llm_model(self, interaction: discord.Interaction, model: str):
