@@ -21,8 +21,14 @@ class Ollama(commands.Cog):
         print("DEBUG: Ollama cog loaded")
 
     # Slashbefehl um das LLM Modell zu ändern
-    @app_commands.command(name = "set_llm_model", description = "Set the Model for Llama (Llama 2 | Codellama | Discollama)")
-    async def set_llm_model(self, interaction: discord.Interaction, model: str):
+    @app_commands.command(name = "set_llm_model", description = "Set the Model for Llama")
+    @app_commands.describe(model = "Change the active LLM Model")
+    @app_commands.choices(model = [
+        discord.app_commands.Choice(name = "Llama2", value = "llama2"),
+        discord.app_commands.Choice(name="Codellama", value="codellama"),
+        discord.app_commands.Choice(name="Discollama", value="discollama")
+    ])
+    async def set_llm_model(self, interaction: discord.Interaction, model: discord.app_commands.Choice[str]):
         # wtf is goin here?
         llmModel = model
         await self.bot.change_presence(activity=discord.Game(name = model))
@@ -56,9 +62,9 @@ class Ollama(commands.Cog):
 
         # Embed
         promptEmbed = discord.Embed(title="Llama Prompt Command", description="The parser still needs some work, there might be some stupid formatting going on\n", color=0xe91e63)
-        promptEmbed.add_field(name="LLM Model", value=f"Using {llmModel} Model", inline=True)
-        promptEmbed.add_field(name="Prompt", value=f"Input was: {question}", inline=True)
-        promptEmbed.add_field(name="Request", value=f"Response includes {len(answer)} characters", inline=True)
+        promptEmbed.add_field(name="LLM Model", value=llmModel, inline=True)
+        promptEmbed.add_field(name="Prompt", value=question, inline=True)
+        promptEmbed.add_field(name="Request", value=f"{len(answer)} characters", inline=True)
         promptEmbed.add_field(name="Answer", value="", inline=False)
         for i in range(contentLength):
             promptEmbed.add_field(name="" ,value=splittedAns[i], inline=False)
