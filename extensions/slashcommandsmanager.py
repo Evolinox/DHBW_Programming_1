@@ -13,9 +13,9 @@ class SlashcommandManager(commands.Cog):
     # Alle Slashbefehle mit Server synchronisieren
     @commands.command()
     async def sync(self, ctx) -> None:
-        slashcommandtree = await ctx.bot.tree.sync(guild=ctx.guild)
+        slashcommandtree = await ctx.bot.tree.sync()
         await ctx.send(f'Synced {len(slashcommandtree)} commands.')
         print("DEBUG: synced Command Tree")
 
 async def setup(bot):
-    await bot.add_cog(SlashcommandManager(bot), guilds = [discord.Object(id=1179106176915480686), discord.Object(id=635480321541931029), discord.Object(id=1115380293063430214)])
+    await bot.add_cog(SlashcommandManager(bot))
