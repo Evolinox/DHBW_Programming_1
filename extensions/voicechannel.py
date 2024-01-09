@@ -5,6 +5,10 @@ from discord.ext import commands
 intents = discord.Intents.default()
 intents.message_content = True
 
+createChannelID = 1114248615553155112
+categoryID = 987701014159319100
+devServerID = 635480321541931029
+
 class Voicechannel(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
