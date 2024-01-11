@@ -43,5 +43,11 @@ class Voicechannel(commands.Cog):
                             if channelTemp2.name == (user_name + "'s Channel"):
                                 await member.edit(voice_channel = channelTemp2)
 
+            temp = "'s Channel"
+            for channels in guild.voice_channels:
+                if temp in channels.name:
+                    if len(channels.members) == 0:
+                        await channels.delete()
+
 async def setup(bot):
     await bot.add_cog(Voicechannel(bot))
