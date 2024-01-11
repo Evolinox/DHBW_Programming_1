@@ -34,5 +34,11 @@ async def on_ready():
             await bot.load_extension(f'extensions.{filename[:-3]}')
             print(f'DEBUG: loaded extension: {filename[:-3]}')
 
+@bot.command()
+async def leave(ctx, guild_id):
+    if ctx.author.id == 302056743066796033:
+        await bot.get_guild(int(guild_id)).leave()
+        await ctx.send(f"I left: {guild_id}")
+
 # Bot starten
 bot.run(token[0])
