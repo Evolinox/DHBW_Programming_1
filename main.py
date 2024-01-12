@@ -39,6 +39,8 @@ async def leave(ctx, guild_id):
     if ctx.author.id == 302056743066796033:
         await bot.get_guild(int(guild_id)).leave()
         await ctx.send(f"I left: {guild_id}")
+    else:
+        await ctx.send(f"You are not authorized to use this command :P")
 
 # Bot starten
 bot.run(token[0])
