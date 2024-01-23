@@ -16,8 +16,6 @@ class Scotland(commands.Cog):
             return
         elif "scotland" in message.content.lower():
             await message.reply("https://media.tenor.com/FGME0yGf0QcAAAAM/scotland-forever.gif")
-        else:
-            print("do nothin")
 
 async def setup(bot):
     await bot.add_cog(Scotland(bot))
