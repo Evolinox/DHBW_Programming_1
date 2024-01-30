@@ -34,6 +34,27 @@ class Infrago(commands.Cog):
         discord.app_commands.Choice(name="Eberbach", value="8000369")
     ])
     async def infra(self, interaction: discord.Interaction, eva: discord.app_commands.Choice[str], date: str, time: str):
+        
+        infraGoUrl = f"https://apis.deutschebahn.com/db-api-marketplace/apis/timetables/v1/plan/{eva.value}/{date}/{time}"
+
+        headers = {
+            "DB-Client-Id": dbApiId,
+            "DB-Api-Key": dbApiSecret,
+            "accept": "application/xml"
+        }
+        
+        await interaction.response.defer()
+        await asyncio.sleep(1)
+
+        response = requests.get(infraGoUrl, headers=headers)
+        data = ET.fromstring(response.text)
+
+        timetable = []
+
+        timetable.append(data.get("station"))
+
+        # Wait a second, who are you?!
+        await asyncio.sleep(1)
 
 async def setup(bot):
     await bot.add_cog(Infrago(bot))
