@@ -22,6 +22,14 @@ class Infrago(commands.Cog):
     async def on_ready(self):
         print("DEBUG: Infrago cog loaded")
 
+    def date2Friendly(timecode):
+        ...
+        return timecode
+
+    def path2Friendly(trainpath):
+        ...
+        return trainpath
+
     # Slashbefehl um die Frage einzugeben und an Ollama lokal zu senden
     @app_commands.command(name = "timetable", description = "Get arrivals and departures from a Station")
     @app_commands.describe(eva = "Station Number")
