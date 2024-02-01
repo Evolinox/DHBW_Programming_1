@@ -14,6 +14,14 @@ with open('token.txt') as file:
     dbApiId = ""
     dbApiSecret = ""
 
+def date2Friendly(timecode):
+    ...
+    return timecode
+
+def path2Friendly(trainpath):
+    ...
+    return trainpath
+
 class Infrago(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
@@ -21,14 +29,6 @@ class Infrago(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print("DEBUG: Infrago cog loaded")
-
-    def date2Friendly(timecode):
-        ...
-        return timecode
-
-    def path2Friendly(trainpath):
-        ...
-        return trainpath
 
     # Slashbefehl um die Frage einzugeben und an Ollama lokal zu senden
     @app_commands.command(name = "timetable", description = "Get arrivals and departures from a Station")
@@ -63,6 +63,19 @@ class Infrago(commands.Cog):
 
         # Wait a second, who are you?!
         await asyncio.sleep(1)
+
+        for s in data:
+            for t in s:
+                train = [
+                    [
+                        [s[0].attrib.get("c"), s[1].attrib.get("l")],
+                        s[1].attrib.get("pp"),
+                        date2Friendly(s[1].attrib.get("pt"))
+                ],
+            path2Friendly(s[1].attrib.get("ppth")),
+            path2Friendly(s[2].attrib.get("ppth"))
+        ]
+        timetable.append(train)
 
 async def setup(bot):
     await bot.add_cog(Infrago(bot))
