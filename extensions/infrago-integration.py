@@ -18,9 +18,14 @@ def date2Friendly(timecode):
     ...
     return timecode
 
-def path2Friendly(trainpath):
-    ...
-    return trainpath
+def fetchPath(train):
+    # Base Variables
+    arrival = train.find("ar")
+    departure = train.find("dp")
+    path = []
+
+    # Return the Linepath
+    return path
 
 class Infrago(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -72,8 +77,8 @@ class Infrago(commands.Cog):
                         s[1].attrib.get("pp"),
                         date2Friendly(s[1].attrib.get("pt"))
                 ],
-            path2Friendly(s[1].attrib.get("ppth")),
-            path2Friendly(s[2].attrib.get("ppth"))
+            fetchPath(s[1].attrib.get("ppth")),
+            fetchPath(s[2].attrib.get("ppth"))
         ]
         timetable.append(train)
 
