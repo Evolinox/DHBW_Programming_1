@@ -14,6 +14,12 @@ with open('token.txt') as file:
     dbApiId = ""
     dbApiSecret = ""
 
+def fetchLine(train):
+    if train[1].attrib.get("l") is None:
+        return train[0].attrib.get("n")
+    else:
+        return train[1].attrib.get("l")
+
 def date2Friendly(timecode):
     ...
     return timecode
@@ -73,7 +79,7 @@ class Infrago(commands.Cog):
             for t in s:
                 train = [
                     [
-                        [s[0].attrib.get("c"), s[1].attrib.get("l")],
+                        [s[0].attrib.get("c"), fetchLine(s)],
                         s[1].attrib.get("pp"),
                         date2Friendly(s[1].attrib.get("pt"))
                 ],
