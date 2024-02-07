@@ -30,6 +30,16 @@ def fetchPath(train):
     departure = train.find("dp")
     path = []
 
+    # Check, if Train (1) starts here, (2) ends here or (3) has a stop here.
+    if arrival is None and departure is not None:
+        print(train)
+
+    elif arrival is not None and departure is None:
+        print(train)
+
+    elif arrival is not None and departure is not None:
+        print(train)
+
     # Return the Linepath
     return path
 
