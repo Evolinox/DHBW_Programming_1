@@ -32,13 +32,27 @@ def fetchPath(train):
 
     # Check, if Train (1) starts here, (2) ends here or (3) has a stop here.
     if arrival is None and departure is not None:
-        print(train)
+        # Get Terminus
+        pathAfter = departure.attrib.get("ppth")
+        pathAfter = pathAfter.split("|")
+        path.append(pathAfter[len(pathAfter)-1])
 
     elif arrival is not None and departure is None:
-        print(train)
+        # Get first Station
+        pathBefore = arrival.attrib.get("ppth")
+        pathBefore = pathBefore.split("|")
+        path.append(pathBefore[0])
 
     elif arrival is not None and departure is not None:
-        print(train)
+        # Get first Station
+        pathBefore = arrival.attrib.get("ppth")
+        pathBefore = pathBefore.split("|")
+        path.append(pathBefore[0])
+
+        # Get Terminus
+        pathAfter = departure.attrib.get("ppth")
+        pathAfter = pathAfter.split("|")
+        path.append(pathAfter[len(pathAfter)-1])
 
     # Return the Linepath
     return path
