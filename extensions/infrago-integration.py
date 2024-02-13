@@ -20,8 +20,8 @@ def fetchLine(train):
     else:
         return train[1].attrib.get("l")
 
-def date2Friendly(timecode):
-    ...
+def fetchTime(timecode):
+    timecode = f"{timecode[6]+timecode[7]}:{timecode[8]+timecode[9]} Uhr"
     return timecode
 
 def fetchPath(train):
@@ -105,7 +105,7 @@ class Infrago(commands.Cog):
                     [
                         [s[0].attrib.get("c"), fetchLine(s)],
                         s[1].attrib.get("pp"),
-                        date2Friendly(s[1].attrib.get("pt"))
+                        fetchTime(s[1].attrib.get("pt"))
                 ],
             fetchPath(s[1].attrib.get("ppth")),
             fetchPath(s[2].attrib.get("ppth"))
